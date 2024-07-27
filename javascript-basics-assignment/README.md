@@ -1,3 +1,95 @@
+import React, { Component } from 'react';
+
+class FeedbackForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: 0,
+      submitted: false,
+    };
+
+    this.handleRatingChange = this.handleRatingChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleRatingChange(event) {
+    this.setState({ rating: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({ submitted: true });
+  }
+
+  render() {
+    return (
+      <div>
+        {!this.state.submitted ? (
+          <form onSubmit={this.handleSubmit}>
+            <h2>Feedback Form</h2>
+            <div>
+              <label>
+                How would you rate our service?
+                <br />
+                <input
+                  type="radio"
+                  name="rating"
+                  value="1"
+                  checked={this.state.rating === '1'}
+                  onChange={this.handleRatingChange}
+                />{' '}
+                1
+                <input
+                  type="radio"
+                  name="rating"
+                  value="2"
+                  checked={this.state.rating === '2'}
+                  onChange={this.handleRatingChange}
+                />{' '}
+                2
+                <input
+                  type="radio"
+                  name="rating"
+                  value="3"
+                  checked={this.state.rating === '3'}
+                  onChange={this.handleRatingChange}
+                />{' '}
+                3
+                <input
+                  type="radio"
+                  name="rating"
+                  value="4"
+                  checked={this.state.rating === '4'}
+                  onChange={this.handleRatingChange}
+                />{' '}
+                4
+                <input
+                  type="radio"
+                  name="rating"
+                  value="5"
+                  checked={this.state.rating === '5'}
+                  onChange={this.handleRatingChange}
+                />{' '}
+                5
+              </label>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        ) : (
+          <div>
+            <h2>Thank you for your feedback!</h2>
+            <p>Your rating: {this.state.rating}</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+export default FeedbackForm;
+
+
+
 ## Problem Instructions
 
 1.  You are given five problems in this assignment to solve which shall be available in `./solutions` directory  
