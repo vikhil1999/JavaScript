@@ -1,0 +1,35 @@
+.rating-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.rating-label {
+  position: relative;
+  display: inline-block;
+}
+
+.rating-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.rating-span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rating-input:checked + .rating-span,
+.rating-span:hover {
+  background-color: #4caf50;
+  color: white;
+}
