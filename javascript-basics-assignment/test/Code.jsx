@@ -7,14 +7,21 @@ class FeedbackForm extends Component {
     this.state = {
       rating: 0,
       submitted: false,
+      feedback: '',
     };
 
     this.handleRatingChange = this.handleRatingChange.bind(this);
+    this.handleFeedbackChange = this.handleFeedbackChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBack = this.handleBack.bind(this);
   }
 
   handleRatingChange(event) {
-    this.setState({ rating: event.target.value });
+    this.setState({ rating: event.target.value, submitted: false });
+  }
+
+  handleFeedbackChange(event) {
+    this.setState({ feedback: event.target.value });
   }
 
   handleSubmit(event) {
@@ -22,33 +29,43 @@ class FeedbackForm extends Component {
     this.setState({ submitted: true });
   }
 
+  handleBack() {
+    this.setState({ submitted: false, feedback: '' });
+  }
+
   render() {
     return (
-      <div>
+      <div className="feedback-container">
         {!this.state.submitted ? (
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <h2>Feedback Form</h2>
             <div className="rating-buttons">
               {Array.from({ length: 5 }, (_, index) => (
-                <label key={index} className="rating-label">
-                  <input
-                    type="radio"
-                    name="rating"
-                    value={index + 1}
-                    checked={this.state.rating === String(index + 1)}
-                    onChange={this.handleRatingChange}
-                    className="rating-input"
-                  />
-                  <span className="rating-span">{index + 1}</span>
-                </label>
+                <button
+                  type="button"
+                  key={index}
+                  className="rating-button"
+                  onClick={() => this.handleRatingChange({ target: { value: index + 1 } })}
+                >
+                  {index + 1}
+                </button>
               ))}
             </div>
-            <button type="submit">Submit</button>
           </form>
         ) : (
-          <div>
-            <h2>Thank you for your feedback!</h2>
-            <p>Your rating: {this.state.rating}</p>
+          <div className="feedback-popup">
+            <p>You chose {this.state.rating}.</p>
+            <p>Please provide feedback on how we can improve.</p>
+            <textarea
+              value={this.state.feedback}
+              onChange={this.handleFeedbackChange}
+              placeholder="Type your answer here..."
+              rows="4"
+            />
+            <div className="feedback-actions">
+              <button type="button" onClick={this.handleBack}>Back</button>
+              <button type="button" onClick={this.handleSubmit}>Submit</button>
+            </div>
           </div>
         )}
       </div>
