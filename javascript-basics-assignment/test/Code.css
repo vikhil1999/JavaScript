@@ -1,21 +1,16 @@
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
 .rating-buttons {
   display: flex;
   gap: 10px;
 }
 
-.rating-label {
-  position: relative;
-  display: inline-block;
-}
-
-.rating-input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.rating-span {
-  display: inline-block;
+.rating-button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -25,11 +20,50 @@
   font-size: 16px;
   color: #333;
   cursor: pointer;
+  border: none;
   transition: background-color 0.3s;
 }
 
-.rating-input:checked + .rating-span,
-.rating-span:hover {
+.rating-button:hover {
   background-color: #4caf50;
   color: white;
+}
+
+.feedback-popup {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+}
+
+.feedback-popup textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.feedback-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feedback-actions button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.feedback-actions button:hover {
+  background-color: #45a049;
 }
